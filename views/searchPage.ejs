@@ -1,0 +1,105 @@
+<%- include('./partials/header.ejs')%>
+<%- include('./partials/navbar.ejs')%>
+
+<head>
+    <link rel="stylesheet" href="css/searchPage.css">
+</head>
+<div class="forpc">
+    <h1>Searches:</h1>
+    <div class="forline">
+        <div class="line"></div>
+    </div>
+    <% let count= data.length%>
+    <div class="data">
+        <img src="images/QRcode.jpeg" alt="">
+        <div class="searches"> 
+            <% if(data.length!==0){%>
+                <%for(let i=0;i < count ; i++){%>
+                    <div class="search-box">
+                        <h3><%= data[i].topicName%></h3>
+                        <h4>DsayDSA</h4>
+                        <a href="/viewCon/<%= data[i]._id%>">Load Lecture</a>
+                    </div>
+                <%}%>
+            <%}else{%>
+                <div class="nothing">
+                    <div class="msg">
+                        <img class="oops" src="images/oops.png" alt="">
+                        <div class="text">
+                            <h2>Nothing to Show</h2>
+                            <p>please try other keyWords!😃</p>
+                            <form action="/search" method="post">
+                                <input name="searchbar" type="search" placeholder="Search">
+                                <label class="icon">
+                                    <button><span class="fas fa-search"></span></button>
+                                </label>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            <%}%>
+        </div>
+    </div>
+
+    <div class="praQues">
+        <%if(questions.length!==0){%>
+           <%for(let i=0; i < questions.length ; i++){%>
+             <div class="set">
+               <div class="question"><p><%= questions[i].question%></p><i class="fa-solid fa-arrow-down"></i><i class="fa-solid fa-arrow-up"></i></div>
+               <div class="answer">
+                 <div class="text-box">
+                   <div class="html-box practiceHtml">
+                     <textarea class="textarea" readonly>
+                       <%= questions[i].answer%>                    
+                     </textarea>
+                     <button class="htmlBtn htmlBtnpractice"><i class="fa-regular fa-copy forcopy"></i> <p class="copied">copied</p></button>
+                   </div>
+                 </div>
+               </div>
+             </div>
+           <%}%>
+         <%}else{%>
+           <div class="practNothing">
+             <h1>Nothing to Show</h1>
+             <h3>Their is no question related to your Search😊</h3>
+           </div>
+         <%}%>
+       </div>
+
+
+</div>
+<script>
+    const htmlBtnprac = document.querySelectorAll(".htmlBtnpractice"),
+    answer = document.querySelectorAll(".answer"),
+    fordown = document.querySelectorAll(".fa-arrow-down"),
+    forup = document.querySelectorAll(".fa-arrow-up"),
+    textareaprac = document.querySelectorAll(".textarea"),
+    copied = document.querySelectorAll(".copied"),
+    copy = document.querySelectorAll(".forcopy")
+    for (let i = 0; i < fordown.length; i++) {
+    fordown[i].onclick = function forpractice() {
+        answer[i].style.display = "block"
+        fordown[i].style.display = "none"
+        forup[i].style.display = "block"
+    }
+    htmlBtnprac[i].onclick = function copypractice() {
+        navigator.clipboard.writeText(textareaprac[i].value);
+    }
+    forup[i].onclick = function tohide() {
+        answer[i].style.display = "none"
+        fordown[i].style.display = "block"
+        forup[i].style.display = "none"
+    }
+    copy[i].onclick = function copied1() {
+        copy[i].style.display = "none"
+        copied[i].style.display = "block"
+        setInterval(() => {
+            copy[i].style.display = "block"
+            copied[i].style.display = "none"
+        }, 4000);
+        clearInterval();
+    }
+}
+</script>
+
+<%- include('./partials/footer.ejs')%>

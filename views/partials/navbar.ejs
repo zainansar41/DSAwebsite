@@ -1,0 +1,36 @@
+<head>
+    <link rel="stylesheet" href="css/navbar.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+</head>
+
+<nav>
+    <ul>
+        <li class="logo">DsayDSA</li>
+        <li class="btn"><span class="fas fa-bars"></span></li>
+        <div class="items">
+            <li><a href="/">Home</a></li>
+            <li><a href="/ds">DS</a></li>
+            <li><a href="/algo">Algos</a></li>
+            <li><a href="/query">Query</a></li>
+            <%if(name !== ""){%>
+                <li><a href="/"><%= name%></a></li>
+            <%}else{%>
+                <li><a href="/login">Login</a></li>
+            <%}%>
+        </div> 
+        <li class="search-icon">
+            <form action="/search" method="post">
+                <input name="searchbar" type="search" placeholder="Search">
+                <label class="icon">
+                    <button><span class="fas fa-search"></span></button>
+                </label>
+            </form>
+        </li>
+    </ul>
+</nav>
+<script>
+    $('nav ul li.btn span').click(function () {
+        $('nav ul div.items').toggleClass("show");
+        $('nav ul li.btn span').toggleClass("show");
+    });
+</script>

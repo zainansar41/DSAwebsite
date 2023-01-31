@@ -1,0 +1,88 @@
+<%- include('./partials/header.ejs')%>
+<%- include('./partials/navbar.ejs')%>
+<head><link rel="stylesheet" href="css/DS.css"></head>
+<div class="forpc">
+    <h1 class="heading">Data Structures</h1>
+    <div class="forline"><div class="line"></div></div>
+    <div class="cover">
+        <div class="col1">
+            <div class="para">
+                Data structures are not only used to organize data. It is also used to process, retrieve and store data. There are several basic and advanced types of data structures  used in almost every program or software system  developed. Therefore, a good knowledge of data structures is required.
+            </div>
+        </div>
+        <div class="col2"></div>
+        <div class="DS">
+            <% data.forEach(function(item){ %>
+                <div class="box">
+                    <div class="content">
+                        <h3><%= item.topicName%></h3>
+                        <p>DsayDSA</p>
+                    </div>
+                    <div class="btn">
+                        <a href="/viewCon/<%= item._id%>">View</a>
+                    </div>
+                </div>
+            <% }) %>
+            
+            <div class="box">
+                <div class="content">
+                    <h3>Linked List</h3>
+                    <p>DsayDSA</p>
+                </div>
+                <div class="btn">
+                    <a href="">View</a>
+                </div>
+            </div>
+            <div class="box">
+                <div class="content">
+                    <h3>Linked List</h3>
+                    <p>DsayDSA</p>
+                </div>
+                <div class="btn">
+                    <a href="">View</a>
+                </div>
+            </div>
+            <div class="box">
+                <div class="content">
+                    <h3>Linked List</h3>
+                    <p>DsayDSA</p>
+                </div>
+                <div class="btn">
+                    <a href="">View</a>
+                </div>
+            </div>
+            <div class="box">
+                <div class="content">
+                    <h3>Linked List</h3>
+                    <p>DsayDSA</p>
+                </div>
+                <div class="btn">
+                    <a href="">View</a>
+                </div>
+            </div>
+            <div class="box">
+                <div class="content">
+                    <h3>Linked List</h3>
+                    <p>DsayDSA</p>
+                </div>
+                <div class="btn">
+                    <a href="">View</a>
+                </div>
+            </div>
+            <div class="box">
+                <div class="content">
+                    <h3>Linked List</h3>
+                    <p>DsayDSA</p>
+                </div>
+                <div class="btn">
+                    <a href="">View</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+<%- include('./partials/footer.ejs')%>

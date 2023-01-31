@@ -1,0 +1,31 @@
+<%- include('./partials/header.ejs')%>
+<%- include('./partials/navbar.ejs')%>
+
+    <head>
+        <link rel="stylesheet" href="css/query.css">
+    </head>
+    <div class="Query">
+        <div class="query-content">
+            <form action="" method="post">
+                <div class="info">
+                        <div class="block">
+                            <i class="fa-solid fa-user"></i>
+                            <input type="text" name="name" placeholder="" value="<%= result.name%>">
+                        </div>
+                        <div class="block">
+                            <i class="fa-solid fa-envelope"></i>
+                            <input type="text" name="email" placeholder="" value="<%= result.email%>">
+                        </div>
+                    </div>
+                    <div class="msg">
+                        <input class="subject" type="text" name="Subject" placeholder="what's your question about">
+                        <textarea name="question" placeholder="write your Question"></textarea>
+                    </div>
+                    <button class="formBtn" type="submit">Ask</button>
+
+                </form>
+            </div>
+</div>
+
+
+<%- include('./partials/footer.ejs')%>

@@ -1,0 +1,123 @@
+<%- include('./partials/header.ejs')%>
+<%- include('./partials/navbar.ejs')%>
+
+<head>
+  <link rel="stylesheet" href="css/viewCon.css">
+</head>
+<div class="forpc">
+  <h1>
+    <%= data.topicName %>
+  </h1>
+  <br>
+  <div class="content-box">
+    <div class="content">
+      <% for(let i=0; i < j; i++){%>
+
+        <p>
+          <%= data.paragraphs[i]%>
+        </p>
+        <br><br><br><br>
+        <div class="image"><img src="<%= data.imageUrlArray[i]%>" alt=""></div>
+        <br><br><br><br>
+        <%}%>
+    </div>
+    <div class="wrapper">
+      <header>Quote of the Day</header>
+      <div class="content">
+        <div class="quote-area">
+          <i class="fas fa-quote-left"></i>
+          <p class="quote">Never give up because you never know if the next try is going to be the one that works.</p>
+          <i class="fas fa-quote-right"></i>
+        </div>
+        <div class="author">
+          <span>__</span>
+          <span class="name">Mary Kay Ash</span>
+        </div>
+      </div>
+      <div class="buttons">
+        <div class="features">
+          <ul>
+            <li class="speech"><i class="fas fa-volume-up"></i></li>
+            <li class="copy"><i class="fas fa-copy"></i></li>
+            <li class="twitter"><i class="fab fa-twitter"></i></li>
+          </ul>
+          <button class="quotebtn">New Quote</button>
+        </div>
+      </div>
+      <br><br><br><br><br><br>
+      <br><br><br><br><br><br>
+      <br><br><br><br><br><br>
+      <div class="image"><img src="images/QRcode.jpeg" alt=""></div>
+    </div>
+  </div>
+
+  <%if(data.code !="" ){%>
+    <div class="text-box">
+      <div class="h2">C++ code</div>
+      <div class="html-box">
+        <textarea id="fortheory" readonly>
+                <%= data.code%>                    
+            </textarea>
+        <button class="htmlBtn" id="htmlBtn"><i class="fa-regular fa-copy" id="copy1"></i><p id="copied1">copied</p></button>
+      </div>
+    </div>
+  <%}%>
+  <div class="praQues">
+     <%if(questions.length!==0){%>
+        <%for(let i=0; i < questions.length ; i++){%>
+          <div class="set">
+            <div class="question"><p><%= questions[i].question%></p><i class="fa-solid fa-arrow-down"></i><i class="fa-solid fa-arrow-up"></i></div>
+            <div class="answer">
+              <div class="text-box">
+                <div class="html-box practiceHtml">
+                  <textarea class="textarea" readonly>
+                    <%= questions[i].answer%>                    
+                  </textarea>
+                  <button class="htmlBtn htmlBtnpractice"><i class="fa-regular fa-copy forcopy"></i> <p class="copied">copied</p></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        <%}%>
+      <%}else{%>
+        <div class="practNothing">
+          <h1>Nothing to Show</h1>
+          <h3>Their is no question related to this Topic😊</h3>
+        </div>
+      <%}%>
+    </div>
+
+
+  </div>
+
+      
+
+
+
+
+
+</div>
+
+
+
+<script>
+  const textarea = document.querySelector("#fortheory");
+  const htmlBtn = document.getElementById("htmlBtn");
+  const copied1=document.getElementById("copied1")
+  const copy1=document.getElementById('copy1')
+  htmlBtn.onclick = function copy() {
+    // textarea.select();
+    // document.execCommand("copy");
+    navigator.clipboard.writeText(textarea.value);
+  }
+  copy1.onclick= function copied1() {
+    copy1.style.display="none"
+      copied1.style.display="block"
+    setInterval(() => {
+      copy1.style.display="block"
+      copied1.style.display="none"
+    }, 4000);
+  }
+</script>
+<script src="js/viewCon.js"></script>
+<%- include('./partials/footer.ejs')%>

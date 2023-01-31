@@ -1,0 +1,132 @@
+<%- include('./partials/header.ejs')%>
+
+<head><link rel="stylesheet" href="css/loginSinup.css"></head>
+<div class="container">
+    <input type="checkbox" id="flip">
+    <div class="cover">
+        <div class="front">
+            <img src="images/loginflip.jpg" alt="error">
+        </div>
+    </div>
+    <div class="form">
+        <div class="formf">
+            <form action="/login" method="post" class="form1">
+                <div class="login">
+                    <h3 class="tittle">login</h3>
+                    <div class="input">
+                        <div class="abc">
+                            <div class="inputf">
+                                <i class="fas fa-envelope"></i>
+                                <input type="text" name="email" placeholder="enter your email" required>
+                            </div>
+                            <div class="emailerror1"></div>
+                        </div>
+                        <div class="abc">
+                            <div class="inputf">
+                                <i class="fas fa-key"></i>
+                                <input type="password" name="password" placeholder="enter your password" required>
+                            </div>
+                            <div class="passworderror1"></div>
+                        </div>
+                        <!-- <div class="text"><a href="#">forgot password</a></div> -->
+                        <div class="button inputf">
+                            <input type="submit">
+                        </div>
+                        <div class="text">don't you have an account? <label for="flip">sinup now</label></div>
+                    </div>
+                </div>
+            </form>
+           <form action="/signup" method="post" class="form2">
+            <div class="sinup">
+                <h3 class="tittle">sinup</h3>
+                <div class="input">
+                    <div class="inputf">
+                        <i class="fas fa-user"></i>
+                        <input type="text" name="name" placeholder="enter your name" required>
+                    </div>
+                    <div class="abc">
+                        <div class="inputf">
+                            <i class="fas fa-envelope"></i>
+                            <input type="text" name="email" placeholder="enter your email" required>
+                        </div>
+                        <div class="emailerror2"></div>
+                    </div>
+                    <div class="abc">
+                        <div class="inputf">
+                            <i class="fas fa-key"></i>
+                            <input type="password" name="password" placeholder="enter your password" required>
+                        </div>
+                        <div class="passworderror2"></div>
+                    </div>
+                    <!-- <div class="text"><a href="#">forgot password</a></div> -->
+                    <div class="button inputf">
+                        <input type="submit">
+                    </div>
+                    <div class="text">do you have an account? <label for="flip">login</label></div>
+                </div>
+            </div>
+           </form>
+        </div>
+    </div>
+</div>
+<script>
+    const form1=document.querySelector('.form1')
+    form1.addEventListener('submit',async (e)=>{
+        e.preventDefault();
+            const emailError = document.querySelector('.emailerror1')
+            const passwordError = document.querySelector('.passworderror1')
+            const email = form1.email.value
+            const password = form1.password.value
+            emailError.textContent = ''
+            passwordError.textContent = ''
+            try {
+                const result = await fetch('/login', {
+                    method: 'POST',
+                    body: JSON.stringify({ email, password }),
+                    headers: { 'Content-Type': 'application/json' }
+                })
+                const data = await result.json()
+                console.log(data);
+                if (data.errors) {
+                    emailError.textContent = data.errors.email
+                    passwordError.textContent = data.errors.password
+                }
+                if (data.user) {
+                    location.assign('/')
+                }
+            } catch (error) {
+                console.log(error);
+            }
+    })
+    const form2=document.querySelector('.form2')
+    form2.addEventListener('submit',async (e)=>{
+        e.preventDefault();
+            const emailError = document.querySelector('.emailerror2')
+            const passwordError = document.querySelector('.passworderror2')
+            const name=form2.name.value
+            const email = form2.email.value
+            const password = form2.password.value
+            emailError.textContent = ''
+            passwordError.textContent = ''
+            try {
+                const result = await fetch('/signup', {
+                    method: 'POST',
+                    body: JSON.stringify({name, email, password }),
+                    headers: { 'Content-Type': 'application/json' }
+                })
+                const data = await result.json()
+                console.log(data);
+                if (data.error) {
+                    emailError.textContent = data.error.email
+                    passwordError.textContent = data.error.password
+                }
+                if (data.user) {
+                    location.assign('/')
+                }
+            } catch (error) {
+                console.log(error);
+            }
+    })
+</script>
+</body>
+</html>

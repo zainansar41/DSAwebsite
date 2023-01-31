@@ -1,0 +1,61 @@
+<%- include('./partials/header.ejs')%>
+<%- include('./partials/navbar.ejs')%>
+<head><link rel="stylesheet" href="css/startprac.css"></head>
+<div class="forpc">
+    <h1>Lets Start practicing</h1>
+    <div class="forline"><div class="line"></div></div>
+
+    <div class="practice">
+        <%for(let i=0; i < data.length ; i++){%>
+            <div class="set">
+              <div class="question"><p><%= data[i].question%></p><i class="fa-solid fa-arrow-down"></i><i class="fa-solid fa-arrow-up"></i></div>
+              <div class="answer">
+                <div class="text-box">
+                  <div class="html-box practiceHtml">
+                    <textarea class="textarea" readonly>
+                      <%= data[i].answer%>                    
+                    </textarea>
+                    <button class="htmlBtn htmlBtnpractice"><i class="fa-regular fa-copy forcopy"></i> <p class="copied">copied</p></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <%}%>
+    </div>
+</div>
+<script>
+    const htmlBtnprac = document.querySelectorAll(".htmlBtnpractice"),
+    answer = document.querySelectorAll(".answer"),
+    fordown = document.querySelectorAll(".fa-arrow-down"),
+    forup = document.querySelectorAll(".fa-arrow-up"),
+    textareaprac = document.querySelectorAll(".textarea"),
+    copied = document.querySelectorAll(".copied"),
+    copy = document.querySelectorAll(".forcopy")
+
+    
+for (let i = 0; i < fordown.length; i++) {
+    fordown[i].onclick = function forpractice() {
+        answer[i].style.display = "block"
+        fordown[i].style.display = "none"
+        forup[i].style.display = "block"
+    }
+    htmlBtnprac[i].onclick = function copypractice() {
+        navigator.clipboard.writeText(textareaprac[i].value);
+    }
+    forup[i].onclick = function tohide() {
+        answer[i].style.display = "none"
+        fordown[i].style.display = "block"
+        forup[i].style.display = "none"
+    }
+    copy[i].onclick = function copied1() {
+        copy[i].style.display = "none"
+        copied[i].style.display = "block"
+        setInterval(() => {
+            copy[i].style.display = "block"
+            copied[i].style.display = "none"
+        }, 4000);
+        clearInterval();
+    }
+}
+</script>
+<%- include('./partials/footer.ejs')%>

@@ -1,0 +1,67 @@
+<%- include('./partials/header.ejs')%>
+<%- include('./partials/navbar.ejs')%>
+<head><link rel="stylesheet" href="css/algo.css"></head>
+<div class="forpc">
+    <h1 class="heading">Algoritms</h1>
+    <div class="forline"><div class="line"></div></div>
+    <div class="cover">
+        <div class="col1">
+            <div class="para">
+                An algorithm is  a series of steps used to complete a specific task. They are the programming building blocks that enable computers, smartphones, websites, etc. to function and make decisions. Aside from being harnessed by technology, many things we do on a daily basis resemble algorithms.
+            </div>
+        </div>
+        <div class="col2"></div>
+        <div class="algo">
+            <% data.forEach(function(item){ %>
+                <div class="box">
+                    <div class="content">
+                        <h3><%= item.topicName%></h3>
+                        <p>DsayDSA</p>
+                    </div>
+                    <div class="btn">
+                        <a href="/viewCon/<%= item._id%>">View</a>
+                    </div>
+                </div>
+            <% }) %>
+            <div class="box">
+                <div class="content">
+                    <h3>bubble sort</h3>
+                    <p>DsayDSA</p>
+                </div>
+                <div class="btn">
+                    <a href="">View</a>
+                </div>
+            </div>
+            <div class="box">
+                <div class="content">
+                    <h3>longest subsequence</h3>
+                    <p>DsayDSA</p>
+                </div>
+                <div class="btn">
+                    <a href="">View</a>
+                </div>
+            </div>
+            <div class="box">
+                <div class="content">
+                    <h3>longest subsequence</h3>
+                    <p>DsayDSA</p>
+                </div>
+                <div class="btn">
+                    <a href="">View</a>
+                </div>
+            </div>
+            <div class="box">
+                <div class="content">
+                    <h3>Linked List</h3>
+                    <p>DsayDSA</p>
+                </div>
+                <div class="btn">
+                    <a href="">View</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<%- include('./partials/footer.ejs')%>
